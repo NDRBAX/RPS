@@ -1,4 +1,3 @@
-// let playerName = prompt('What\'s your name?');
 const playerName = prompt('What\'s your name?');
 let options = ['Rock', 'Paper', 'Scissors'];
 let computerScore = 0;
