@@ -1,16 +1,10 @@
 // let playerName = prompt('What\'s your name?');
-
 let playerName = 'John';
+let options = ['Rock', 'Paper', 'Scissors'];
 let computerScore = 0;
 let playerScore = 0;
 
 function game() {
-    let options = ['Rock', 'Paper', 'Scissors'];
-
-    function computerSelection(options) {
-        return options[Math.floor(Math.random() * options.length)];
-    }
-    console.log(computerSelection(options));
 
     function playerSelection() {
         this.sensitiveCase = function(str) {
@@ -18,49 +12,53 @@ function game() {
         }
         return sensitiveCase(prompt(`What's your choice ${playerName} ?`));
     }
-    console.log(playerSelection());
 
-    playRound(computerSelection, playerSelection);
-    console.log('Player score : ' + playerScore + 'Computer score : ' + computerScore)
+    const playerPlay = playerSelection().toString();
 
-}
-
-function playRound(computerSelection, playerSelection) {
-    if (computerSelection === 'Rock' && playerSelection === 'Scissors') {
-        console.log('You loose. Rock crushes the scissors.');
-        computerScore++;
-        return game();
-    } else {
-        console.log('You won. Rock crushes the scissors.');
-        playerScore++;
-        return game();
-    };
-    if (computerSelection === 'Paper' && playerSelection === 'Rock') {
-        console.log('You loose. Paper wraps the stone.');
-        computerScore++;
-        return game();
-    } else {
-        console.log('You won. Paper wraps the stone.');
-        playerScore++;
-        return game();
-    };
-
-    if (computerSelection === 'Scissors' && playerSelection === 'Paper') {
-        console.log('You loose. Scissors cut the paper.');
-        computerScore++;
-        return game();
-    } else {
-        console.log('You won. Scissors cut the paper.');
-        playerScore++;
-        return game();
-    };
-
-    if (computerSelection === playerSelection) {
-        console.log('Tie. Try again !');
-        return game();
-    } else {
-        console.log('Invalid. Try again !');
-        return game();
+    function computerSelection(options) {
+        return options[Math.floor(Math.random() * options.length)]
     }
 
+    const computerPlay = computerSelection(options).toString();
+
+    function checkWinner(a, b) {
+        if (a === b) {
+            console.log('It\'s a tie!');
+        } else if (a === "Rock" && b === "Scissors") {
+            playerScore += 1;
+            console.log('You win. Rock crushes the scissors.');
+        } else if (a === "Rock" && b === "Paper") {
+            computerScore += 1;
+            console.log('You loose. Paper wraps the rock.');
+        } else if (a === "Scissors" && b === "Rock") {
+            computerScore += 1;
+            console.log('You loose. Rock crushes the scissors.');
+        } else if (a === "Scissors" && b === "Paper") {
+            playerScore += 1;
+            console.log('You win. Scissors cut the paper.');
+        } else if (a === "Paper" && b === "Rock") {
+            playerScore += 1;
+            console.log('You win. Paper wraps the rock.');
+        } else if (a === "Paper" && b === "Scissors") {
+            computerScore += 1;
+            console.log('You loose. Scissors cut the paper.');
+        }
+    }
+
+    checkWinner(playerPlay, computerPlay);
+
+
+    console.log('========================');
+    console.log(`You : ${playerPlay}`);
+    console.log(`Computer : ${computerPlay}`);
+    console.log('========================');
+    console.log(`Computer score : ${computerScore}`);
+    console.log(`Player score : ${playerScore}`);
+}
+
+if (playerScore < 5 || computerScore < 5) {
+    game();
+    console.log('Next round !');
+} else {
+    console.log('Play again !')
 }
