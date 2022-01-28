@@ -44,21 +44,22 @@ function game() {
             console.log('You loose. Scissors cut the paper.');
         }
     }
-
+    console.log('========New Round========');
     checkWinner(playerPlay, computerPlay);
-
-
-    console.log('========================');
     console.log(`You : ${playerPlay}`);
     console.log(`Computer : ${computerPlay}`);
-    console.log('========================');
+    console.log('*************************');
     console.log(`Computer score : ${computerScore}`);
     console.log(`Player score : ${playerScore}`);
 }
 
-if (playerScore < 5 || computerScore < 5) {
-    game();
-    console.log('Next round !');
-} else {
-    console.log('Play again !')
+// Call functions
+const playToScore = 3
+while (playerScore !== playToScore && computerScore !== playToScore) {
+    game()
+}
+if (playerScore === playToScore) {
+    console.log('Player won with score', playerScore)
+} else if (computerScore === playToScore) {
+    console.log('Computer won with score', computerScore)
 }
