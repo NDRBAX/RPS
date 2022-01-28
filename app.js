@@ -1,5 +1,5 @@
 // let playerName = prompt('What\'s your name?');
-let playerName = 'John';
+const playerName = prompt('What\'s your name?');
 let options = ['Rock', 'Paper', 'Scissors'];
 let computerScore = 0;
 let playerScore = 0;
@@ -46,11 +46,11 @@ function game() {
     }
     console.log('========New Round========');
     checkWinner(playerPlay, computerPlay);
-    console.log(`You : ${playerPlay}`);
+    console.log(`${playerName} : ${playerPlay}`);
     console.log(`Computer : ${computerPlay}`);
     console.log('*************************');
-    console.log(`Computer score : ${computerScore}`);
-    console.log(`Player score : ${playerScore}`);
+    console.log(`Computer's score : ${computerScore}`);
+    console.log(`${playerName}'s score : ${playerScore}`);
 }
 
 // Call functions
@@ -59,7 +59,7 @@ while (playerScore !== playToScore && computerScore !== playToScore) {
     game()
 }
 if (playerScore === playToScore) {
-    console.log('Player won with score', playerScore)
+    console.log(`${playerName} won with score`, playerScore)
 } else if (computerScore === playToScore) {
     console.log('Computer won with score', computerScore)
 }
